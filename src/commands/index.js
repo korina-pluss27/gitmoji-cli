@@ -5,6 +5,7 @@ import hook from './hook'
 import list from './list'
 import search from './search'
 import update from './update'
+import message from './message'
 
 export default {
   commit,
@@ -13,5 +14,6 @@ export default {
   list,
   removeHook: hook.remove,
   search,
-  update
+  update,
+  message
 }

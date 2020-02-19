@@ -48,7 +48,8 @@ export const options = {
   list: () => commands.list(),
   remove: () => commands.removeHook(),
   search: () => cli.input.map((input) => commands.search(input)),
-  update: () => commands.update()
+  update: () => commands.update(),
+  message: () => commands.message()
 }
 
 findGitmojiCommand(cli, options)
