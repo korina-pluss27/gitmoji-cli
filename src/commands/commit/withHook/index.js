@@ -8,17 +8,7 @@ const withHook = (answers: Answers) => {
     const scope = answers.scope ? `(${answers.scope}): ` : ''
     const title = `${answers.gitmoji} ${scope}${answers.title}`
     const commitMessage = `${title}`
-    exec(`git commit -m ${commitMessage}`, (err, stdout, stderr) => {
-      if (error) {
-        console.log(`error: ${error.message}`)
-        return
-      }
-      if (stderr) {
-        console.log(`stderr: ${stderr}`)
-        return
-      }
-      console.log(`stdout: ${stdout}`)
-    })
+    fs.writeFileSync(process.argv[3], commitMessage);
   } catch (error) {
     console.error(error)
     process.exit(1)
