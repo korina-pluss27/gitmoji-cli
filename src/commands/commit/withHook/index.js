@@ -1,6 +1,6 @@
 // @flow
 import fs from 'fs'
-
+const { exec } = require('child_process')
 import { type Answers } from '../prompts'
 
 const withHook = (answers: Answers) => {
@@ -8,12 +8,16 @@ const withHook = (answers: Answers) => {
     const scope = answers.scope ? `(${answers.scope}): ` : ''
     const title = `${answers.gitmoji} ${scope}${answers.title}`
     const commitMessage = `${title}`
-
-    fs.writeFile(process.argv[3], commitMessage, err => {
-      if (err) {
-        console.error(err)
+    exec(`git commit -m ${commitMessage}`, (err, stdout, stderr) => {
+      if (error) {
+        console.log(`error: ${error.message}`)
+        return
       }
-      console.log("Commit message has been written")
+      if (stderr) {
+        console.log(`stderr: ${stderr}`)
+        return
+      }
+      console.log(`stdout: ${stdout}`)
     })
   } catch (error) {
     console.error(error)
