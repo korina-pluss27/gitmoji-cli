@@ -9,7 +9,12 @@ const withHook = (answers: Answers) => {
     const title = `${answers.gitmoji} ${scope}${answers.title}`
     const commitMessage = `${title}`
 
-    fs.writeFileSync(process.argv[3], commitMessage)
+    fs.writeFile(process.argv[3], commitMessage, err => {
+      if (err) {
+        console.error(err)
+      }
+      console.log("Commit message has been written")
+    })
   } catch (error) {
     console.error(error)
     process.exit(1)
