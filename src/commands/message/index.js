@@ -4,7 +4,8 @@ const commitMsg = () => {
   try {
     const commitMsg = fs.readFileSync(process.argv[3], 'utf8')
     const firstWord = commitMsg.split(' ')[0]
-    if (!fistWord.startsWith(':') || !firstWord.endsWith(':')) {
+    if (!firstWord.startsWith(':') || !firstWord.endsWith(':')) {
+      console.log(firstWord)
       throw new Error()
     }
   } catch (error) {
